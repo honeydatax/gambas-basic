@@ -1,2 +1,0 @@
-Insert into book (
-value (
