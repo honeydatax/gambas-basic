@@ -1,2 +1,2 @@
-# shell-bill
-sqlite bill bash automated
+# gambas basic
+
