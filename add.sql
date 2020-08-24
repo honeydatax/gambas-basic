@@ -1,2 +1,0 @@
-Insert into MOVS ( ID,DOC,DATES,PRODUCT,REFS,VALUE)
-values (
