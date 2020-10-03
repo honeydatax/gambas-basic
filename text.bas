@@ -1,7 +1,7 @@
 ' Gambas module file
 
 Public Sub iprint(s As String, size As Integer)
-  Print Chr$(27) & "[0;37;43m "; String$(size, s); ">"
+  Print Chr$(27) & "[0;37;44m "; String$(size, s); ">"
 End
 
 
