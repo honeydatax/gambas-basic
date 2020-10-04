@@ -7,11 +7,11 @@ Public Sub pprint(f As Float)
   If InStr(s, ".") > -1 Then
      s = s & "00"
     Else
-     s = s & "00" 
+     s = s & ".00" 
   Endif    
   i = InStr(s, ".") + 2
-  If f > 0 Then Print Chr$(27) & "[0;37;44m "; "+";
-  Print Chr$(27) & "[0;37;44m "; Left(s, i)
+  If f > 0 Then Print Chr$(27) & "[0;37;44m"; "+";
+  Print Chr$(27) & "[0;37;44m"; Left(s, i)
 End
 
 
