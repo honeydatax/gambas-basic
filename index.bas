@@ -1151,6 +1151,25 @@ End Sub
             Goto allkey
           End If
 
+'key echo,text
+          If par1 = keywords[3] Then
+            errorssi = 3
+            If par[3] = separete.length Then
+
+                  addtail("  mov dx,L" & (Trim(Str(iii + 9000))))
+                  addtail("  call print")
+                  addbody("L" & Trim(Str(iii + 9000)) & " db '" & separete[1] & "',13,10,'$'")
+
+            Else
+              iii = 1 + iii
+              Goto errorhandler
+
+            End If 
+            errorssi = -1
+            errorss = 0
+
+            Goto allkey
+          End If 
 
 
 '#-----------------------------------------------------
