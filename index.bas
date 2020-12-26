@@ -1279,6 +1279,64 @@ End Sub
             Goto allkey
           End If 
 
+'key add,var3,var1,var2
+          If par1 = keywords[7] Then
+            errorssi = 7
+            If par[7] = separete.length Then
+
+              tc = UCase(Trim(separete[1]))
+              tc1 = UCase(Trim(separete[2]))
+              tc2 = UCase(Trim(separete[3]))
+
+              bbb = findvar(tc)
+              bbb1 = findvar(tc1)
+              bbb2 = findvar(tc2)
+              If bbb <> -1 And tc <> "" And bbb1 <> -1 And tc1 <> "" And bbb2 <> -1 And tc2 <> "" Then
+
+
+                If varstype[bbb] = 6 And varstype[bbb1] = 6 And varstype[bbb2] = 6 Then   
+
+                  addtail("  mov bx,L" & (Trim(Str(line11[bbb1] + 9000))))
+                  addtail("  mov ax,[bx]")
+                  addtail("  mov bx,L" & (Trim(Str(line11[bbb2] + 9000))))
+                  addtail("  mov cx,[bx]")
+                  addtail("  add ax,cx")
+                  addtail("  mov bx,L" & (Trim(Str(line11[bbb] + 9000))))
+                  addtail("  mov [bx],ax")
+              errorssi = -1
+              errorss = 0
+
+                 
+                Else
+
+                  If varstype[bbb] = 12 And varstype[bbb1] = 12 And varstype[bbb2] = 12 Then
+
+                    addtail("  mov bx,L" + (Trim(Str(line11[bbb1] + 9000))))
+                    addtail("  mov eax,[bx]")
+                    addtail("  mov bx,L" + (Trim(Str(line11[bbb2] + 9000))))
+                    addtail("  mov ecx,[bx]")
+                    addtail("  clc")
+                    addtail("  add eax,ecx")
+                    addtail("  mov bx,L" + (Trim(Str(line11[bbb] + 9000))))
+                    addtail("  mov [bx],eax")
+                    errorssi = -1
+                    errorss = 0
+
+                 
+                  Else
+                    iii = 1 + iii
+                    Goto errorhandler
+                  End If                
+                End If
+              End If
+            End If 
+            Goto allkey
+          End If 
+
+
+
+
+
 
 '#-----------------------------------------------------
 ''code
