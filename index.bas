@@ -1171,6 +1171,58 @@ End Sub
             Goto allkey
           End If 
 
+'key wait,var to put key code
+          If par1 = keywords[4] Then
+            errorssi = 4
+            If par[4] = separete.length Then
+
+              tc = UCase(Trim(separete[1]))
+
+              bbb = findvar(tc)
+              If bbb <> -1 And tc <> "" Then
+
+
+                If varstype[bbb] < 10 Then   
+
+
+                  addtail("  mov bx,L" & (Trim(Str(line11[bbb] + 9000))))
+                  addtail("  call waits")
+              errorssi = -1
+              errorss = 0
+
+                 
+                Else
+                  iii = 1 + iii
+                  Goto errorhandler
+                End If
+              End If
+            End If 
+            Goto allkey
+          End If 
+
+'key integer ,var,number value
+          If par1 = keywords[5] Then 
+            errorssi = 5
+
+            If par[5] = separete.length Then
+              tc = UCase(Trim(separete(1)))
+              If findvar(tc) = -1 And tc <> "" And (Asc(tc) > (Asc("A") - 1)) And (Asc(tc) < (Asc("Z") + 1)) Then 
+                addvar(tc, 6, iii)
+                n = Val(Trim(separete(2)))
+                addbody("L" + Trim(Str(iii + 9000)) + " dw " + Str(n))
+              Else
+                  iii = 1 + iii
+                Goto errorhandler
+              End If 
+              errorssi = -1
+              errorss = 0
+            End If
+            Goto allkey
+          End If
+
+
+
+
 
 '#-----------------------------------------------------
 ''code
