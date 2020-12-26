@@ -1205,11 +1205,11 @@ End Sub
             errorssi = 5
 
             If par[5] = separete.length Then
-              tc = UCase(Trim(separete(1)))
+              tc = UCase(Trim(separete[1]))
               If findvar(tc) = -1 And tc <> "" And (Asc(tc) > (Asc("A") - 1)) And (Asc(tc) < (Asc("Z") + 1)) Then 
                 addvar(tc, 6, iii)
-                n = Val(Trim(separete(2)))
-                addbody("L" + Trim(Str(iii + 9000)) + " dw " + Str(n))
+                n = Val(Trim(separete[2]))
+                addbody("L" & Trim(Str(iii + 9000)) & " dw " & Str(n))
               Else
                   iii = 1 + iii
                 Goto errorhandler
@@ -1221,7 +1221,63 @@ End Sub
           End If
 
 
+'key let,var,value number
+          If par1 = keywords[6] Then
+            errorssi = 6
+            If par[6] = separete.length Then
 
+              tc = UCase(Trim(separete[1]))
+
+              bbb = findvar(tc)
+              If bbb <> -1 And tc <> "" Then
+
+
+                If varstype[bbb] = 6 Then   
+
+                  n = Val(Trim(separete[2]))
+                  addtail("  mov bx,L" & (Trim(Str(line11[bbb] + 9000))))
+                  addtail("  mov ax," & Str(n))
+                  addtail("  mov [bx],ax")
+                  errorssi = -1
+                  errorss = 0
+
+                Else
+
+                  If varstype[bbb] = 12 Then   
+                    fn = Val(Trim(separete[2]))
+                    fn = fn * 100
+                    fi = fn
+                    addtail("  mov bx,L" & (Trim(Str(line11[bbb] + 9000))))
+                    addtail("  mov eax," & Str(fi))
+                    addtail("  mov [bx],eax")
+                    errorssi = -1
+                    errorss = 0
+
+                  Else
+
+                    If varstype[bbb] < 5 Then
+                      addvar(tc, 0, iii)
+                      addbody("L" & Trim(Str(iii + 9000)) + " db '" + separete(2) + "',13,10,'$'")
+                      addtail("  mov di,L" & (Trim(Str(line11(bbb) + 9000))))
+                      addtail("  mov al,36")
+                      addtail("  mov [di],al")
+                      addtail("  mov si,L" & (Trim(Str(iii + 9000))))
+                      addtail("  call strcat")
+                      errorssi = -1
+                      errorss = 0
+                    Else
+
+
+                      iii = 1 + iii
+                    
+                      Goto errorhandler
+                    End If
+                  End If
+                End If
+              End If
+            End If 
+            Goto allkey
+          End If 
 
 
 '#-----------------------------------------------------
