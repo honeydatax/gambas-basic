@@ -1388,6 +1388,22 @@ End Sub
             Goto allkey
           End If 
 
+'key exit
+          If par1 = keywords[9] Then
+            errorssi = 9
+            If par[9] = separete.length Then
+                  addtail("  jmp exit")
+            Else
+              iii = 1 + iii
+              Goto errorhandler
+
+            End If 
+            errorssi = -1
+            errorss = 0
+
+            Goto allkey
+          End If 
+
 
 
 
