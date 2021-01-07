@@ -15,6 +15,7 @@ Public Sub Main()
     sss = Args[2]
     i = Val(sss)
   Endif
+  ss = Replace(ss, "HTTP:", "")
   ss = Replace(ss, "http:", "")
   ss = Replace(ss, "//", "")
   ssss = ""
@@ -23,15 +24,24 @@ Public Sub Main()
     ssss = Mid(ss, ii + 1)
     ss = Mid(ss, 1, ii - 1)
   Endif
+  ss = Replace(ss, "/", "")
   s.Connect(ss, i)
   Do While (s.Status <> 7) And (s.Status > 0)
     Wait 0.1
   Loop
   sss = "GET /" & ssss & " HTTP/1.0\n\n"   
+  If s.Status <> 7 Then 
+    Print "error"
+    Quit
+  Endif
   Write #s, sss, Len(sss)
   Do While Lof(s) = 0
     Wait 0.1
   Loop
   Read #s, sss, Lof(s)
+  ii = InStr(sss, gb.CrLf & gb.Crlf)
+  If ii > 0 Then
+    sss = Mid(sss, ii + 4)
+  Endif
   Print sss
   End
