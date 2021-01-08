@@ -9,12 +9,14 @@ Public Sub Main()
   Dim ssss As String
   s = New Socket
   i = 80
-  ss = "localhost"
+  ss = "127.0.0.1"
   If Args.Count > 1 Then ss = Args[1]
   If Args.Count > 2 Then 
     sss = Args[2]
     i = Val(sss)
   Endif
+  ss = Replace(ss, "localhost", "127.0.0.1")
+  ss = Replace(ss, "LOCALHOST", "127.0.0.1")
   ss = Replace(ss, "HTTP:", "")
   ss = Replace(ss, "http:", "")
   ss = Replace(ss, "//", "")
@@ -39,6 +41,7 @@ Public Sub Main()
     Wait 0.1
   Loop
   Read #s, sss, Lof(s)
+  Close s
   ii = InStr(sss, gb.CrLf & gb.Crlf)
   If ii > 0 Then
     sss = Mid(sss, ii + 4)
